@@ -2,16 +2,26 @@ APAGAR ETH EN ROBOOTT
 
 xhost +local:docker
 
-sudo docker run -it -v /dev/:/dev/ -p 50001-50002:50001-50002 --privileged -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix f123bd394e0c
+sudo docker run -it --network=host --privileged -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix 683091394edb
 
-sudo docker exec -it sweet_hellman bash
+sudo docker exec -it stupefied_fermi bash
 
 cd ~/catkin_ws &&  source devel/setup.bash
 
-roslaunch ur_calibration calibration_correction.launch robot_ip:=157.253.197.88 target_filename:="${HOME}/my_robot_calibration.yaml"
-
-roslaunch ur_robot_driver ur3_bringup.launch robot_ip:=157.253.197.88 kinematics_config:=${HOME}/my_robot_calibration.yaml
 
 
 
+
+roslaunch ur_calibration calibration_correction.launch robot_ip:=157.253.197.208 target_filename:="${HOME}/my_robot_calibration.yaml"
+
+
+
+
+
+roslaunch ur_robot_driver ur3_bringup.launch robot_ip:=157.253.197.208 kinematics_config:=/ur3_calibration.yaml
+
+roslaunch ur3_moveit_config moveit_planning_execution.launch
+
+
+roslaunch ur3_moveit_config moveit_rviz.launch rviz_config:=$(rospack find ur5e_moveit_config)/launch/moveit.rviz
 
