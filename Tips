@@ -2,9 +2,9 @@ APAGAR ETH EN ROBOOTT
 
 xhost +local:docker
 
-sudo docker run -it --network=host --privileged -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix 683091394edb
+sudo docker run -it --network=host --privileged -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix 6f0a9af3a665
 
-sudo docker exec -it stupefied_fermi bash
+sudo docker exec -it e61ef86d930f bash
 
 cd ~/catkin_ws &&  source devel/setup.bash
 
@@ -18,7 +18,7 @@ roslaunch ur_calibration calibration_correction.launch robot_ip:=157.253.197.208
 
 
 
-roslaunch ur_robot_driver ur3_bringup.launch robot_ip:=157.253.197.208 kinematics_config:=/ur3_calibration.yaml
+roslaunch ur_robot_driver ur3_bringup.launch robot_ip:=157.253.197.208 kinematics_config:=${HOME}/ur3_robot_calibration.yaml
 
 roslaunch ur3_moveit_config moveit_planning_execution.launch
 
