@@ -30,7 +30,7 @@ Nota: La imagen de la base esta configurada para el brazo robótico del laborato
     ```
 3. Correr el contenedor. Modo interactivo (-it), con el mismo stack de red de el host (--network=host), privilegios extendidos (--privileged), variable de entorno (-e DISPLAY) y mapeo de X11 para transferir información de display entre el host y el contenedor(/tmp/.X11-unix:/tmp/.X11-unix). Esta instrucción borra el contenedor después de la salida, para mantener el contenedor y los archivos modificados/creados se debe quitar el flag de remover (--rm).
     ```bash
-    sudo docker run -it --rm --network=host --privileged -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix 6f0a9af3a665
+    sudo docker run -it --rm --network=host --privileged -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix aiaindustrial/cesim-ai:base
     ```
 4. Para abrir otra sesión de bash del contenedor, se abre una nueva terminal y se imprimen los nomrbres e identificadores de los contenedores generados recientemente:
     ```bash
@@ -48,11 +48,12 @@ Nota: La imagen de la base esta configurada para el brazo robótico del laborato
     ```bash
     roslaunch ur_robot_driver ur3_bringup.launch robot_ip:=<IP_ROBOT> kinematics_config:=${HOME}/ur3_robot_calibration.yaml
     ```
-2. Iniciar el planeador de moveIt:
+2. Correr el programa precargado "ExternalControl" en el PolyScope de el brazo. Asegurarse que la IP del programa de PolyScope coincida con la IP del computador base.
+3. (Nueva terminal) Iniciar el planeador de moveIt:
     ```bash
     roslaunch ur3_moveit_config moveit_planning_execution.launch
     ```
-3. Correr la interfaz de RViz:
+4. (Nueva terminal) Correr la interfaz de RViz:
     ```bash
     roslaunch ur3_moveit_config moveit_rviz.launch rviz_config:=$(rospack find ur5e_moveit_config)/launch/moveit.rviz
     ```
