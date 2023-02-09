@@ -55,7 +55,7 @@ Nota: La imagen de la base esta configurada para el brazo robótico del laborato
     ```
 4. (Nueva terminal) Correr la interfaz de RViz:
     ```bash
-    roslaunch ur3_moveit_config moveit_rviz.launch rviz_config:=$(rospack find ur5e_moveit_config)/launch/moveit.rviz
+    roslaunch ur3_moveit_config moveit_rviz.launch rviz_config:=$(rospack find ur3_moveit_config)/launch/moveit.rviz
     ```
 ## Licencia
 
