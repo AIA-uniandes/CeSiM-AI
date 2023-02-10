@@ -20,17 +20,43 @@ Nota: La imagen de la base esta configurada para el brazo robótico del laborato
 
 #### Linux
 
-1. Hacer pull de la imagen del repositorio del AIA
+1. Hacer pull de la imagen del repositorio del AIA:
     ```bash
-    docker pull aiaindustrial/cesim-ai:base
+    sudo docker pull aiaindustrial/cesim-ai:base
     ```
-2. Permitir la conexión con un display de docker (debe realizarse cada vez que reinicia el dispositivo)
+2. Permitir la conexión con un display de docker (debe realizarse cada vez que reinicia el dispositivo):
     ```bash
     xhost +local:docker
     ```
 3. Correr el contenedor. Modo interactivo (-it), con el mismo stack de red de el host (--network=host), privilegios extendidos (--privileged), variable de entorno (-e DISPLAY) y mapeo de X11 para transferir información de display entre el host y el contenedor(/tmp/.X11-unix:/tmp/.X11-unix). Esta instrucción borra el contenedor después de la salida, para mantener el contenedor y los archivos modificados/creados se debe quitar el flag de remover (--rm).
     ```bash
     sudo docker run -it --rm --network=host --privileged -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix aiaindustrial/cesim-ai:base
+    ```
+4. Para abrir otra sesión de bash del contenedor, se abre una nueva terminal y se imprimen los nomrbres e identificadores de los contenedores generados recientemente:
+    ```bash
+    sudo docker ps -l
+    ```
+    Con el ID del contenedor que se corre en el paso anterior, se abre una nueva sesión interactiva de bash con:
+    ```bash
+    sudo docker exec -it <ID_DEL_CONTENEDOR> bash
+    ```
+5. Para detener el contenedor se debe ejecutar el comando "exit" en el terminal donde se ejecutó el comando "run"
+
+#### Windows
+
+1. Instala [VcXsrv](https://sourceforge.net/projects/vcxsrv/). Una vez instalado ejecuta el aplicativo **XLaunch** y cambiar el ajuste "Disable access control" en la ventana de "Extra settings":
+
+    ![](/doc/imgs/xlaunch.png)
+
+    El resto de ajustes deben permanecer en el ajuste predeterminado.
+    
+2. En un terminal (CMD) con permisos de administrador, hacer pull de la imagen del repositorio del AIA:
+    ```bash
+    pull aiaindustrial/cesim-ai:base
+    ```
+3. Correr el contenedor. Modo interactivo (-it), con el mismo stack de red de el host (--network=host), privilegios extendidos (--privileged) y variable de entorno (-e DISPLAY) asignada a la IP del host. Esta instrucción borra el contenedor después de la salida, para mantener el contenedor y los archivos modificados/creados se debe quitar el flag de remover (--rm).
+    ```bash
+    docker run -it --rm --network=host --privileged -e DISPLAY=<IP_HOST>:0.0 aiaindustrial/cesim-ai:base                      
     ```
 4. Para abrir otra sesión de bash del contenedor, se abre una nueva terminal y se imprimen los nomrbres e identificadores de los contenedores generados recientemente:
     ```bash
