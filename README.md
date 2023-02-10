@@ -2,9 +2,9 @@
 
 CeSiM-AI es un proyecto integral que combina bandas transportadoras de simulación multiproceso, el brazo robótico UR3 y la visión computacional. Este proyecto establece una arquitectura básica y modular para el desarrollo de otros proyectos en robótica, automatización e industriales.
 Los proyectos que implementan este repositorio son:
-* [Empaquetamiento](https://github.com/AIA-uniandes/CeSiM-AI/doc/Empaquetamiento)
-* [Protección a ciberataques](https://github.com/AIA-uniandes/CeSiM-AI/doc/ciberataques)
-* [Modelamiento de estacionamiento para vehículos eléctricos](https://github.com/AIA-uniandes/CeSiM-AI/doc/Estacionamiento_VE)
+* [Empaquetamiento](https://github.com/AIA-uniandes/CeSiM-AI/tree/main/doc/Empaquetamiento)
+* [Protección a ciberataques](https://github.com/AIA-uniandes/CeSiM-AI/tree/main/doc/ciberataques)
+* [Modelamiento de estacionamiento para vehículos eléctricos](https://github.com/AIA-uniandes/CeSiM-AI/tree/main/doc/Estacionamiento_VE)
 
 ![](/doc/imgs/montaje-completo.jpg)
 
