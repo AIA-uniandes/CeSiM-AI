@@ -52,7 +52,7 @@ Nota: La imagen de la base esta configurada para el brazo robótico del laborato
     
 2. En un terminal (CMD) con permisos de administrador, hacer pull de la imagen del repositorio del AIA:
     ```bash
-    pull aiaindustrial/cesim-ai:base
+    docker pull aiaindustrial/cesim-ai:base
     ```
 3. Correr el contenedor. Modo interactivo (-it), con el mismo stack de red de el host (--network=host), privilegios extendidos (--privileged) y variable de entorno (-e DISPLAY) asignada a la IP del host. Esta instrucción borra el contenedor después de la salida, para mantener el contenedor y los archivos modificados/creados se debe quitar el flag de remover (--rm).
     ```bash
