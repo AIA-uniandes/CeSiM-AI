@@ -1,17 +1,27 @@
 # CeSiM-AI
-CeSiM-AI es un proyecto integral que incorpora las bandas transportadoras de simulación multiprocesos, el [brazo robótico UR3](https://www.universal-robots.com/cb3/) y la visión computacional. Este proyecto establece una arquitectura base y modular para el desarrollo de otros proyectos de robótica, automatización y procesos industriales. 
 
+CeSiM-AI es un proyecto integral que combina bandas transportadoras de simulación multiproceso, el brazo robótico UR3 y la visión computacional. Este proyecto establece una arquitectura básica y modular para el desarrollo de otros proyectos en robótica, automatización e industriales.
 Los proyectos que implementan este repositorio son:
-* [Empaquetamiento](https://github.com/AIA-uniandes/CeSiM-AI)
-* [Protección a ciber-ataques](https://github.com/AIA-uniandes/CeSiM-AI)
-* [Modelamiento de estacionamiento para vehículos eléctricos](https://github.com/AIA-uniandes/CeSiM-AI)
+* [Empaquetamiento](https://github.com/AIA-uniandes/CeSiM-AI/doc/Empaquetamiento)
+* [Protección a ciberataques](https://github.com/AIA-uniandes/CeSiM-AI/doc/ciberataques)
+* [Modelamiento de estacionamiento para vehículos eléctricos](https://github.com/AIA-uniandes/CeSiM-AI/doc/Estacionamiento_VE)
 
 ![](/doc/imgs/montaje-completo.jpg)
 
-Este proyecto está construido sobre imágenes de [Docker](https://www.docker.com/resources/what-container/)  y [ROS](https://www.ros.org/blog/why-ros/) para permitir la modularidad, compatibilidad y flexibilidad en el uso de los recursos desarrollados. Las imágenes se encuentran publicadas en el [Dockerhub del AIA](https://hub.docker.com/repository/docker/aiaindustrial/cesim-ai/general) y cuentan con todas las dependencias y archivos necesarios para correr los proyectos desarrollados. Cada dispositivo utilizado cuenta con su respectiva imagen de docker. Si desea extender las capacidades de la imagen suministrada, dirígase a [dockerfiles](/dockerfiles).
+Este proyecto está construido sobre imágenes de Docker y ROS para permitir la modularidad, compatibilidad y flexibilidad en el uso de los recursos desarrollados. Las imágenes se encuentran publicadas en el [Dockerhub del AIA](https://hub.docker.com/repository/docker/aiaindustrial/cesim-ai/general) y cuentan con todas las dependencias y archivos necesarios para correr los proyectos desarrollados. Cada dispositivo utilizado cuenta con su respectiva imagen de docker. Si desea extender las capacidades de la imagen suministrada, dirígase a [dockerfiles](/dockerfiles).
+
+Algunos enlaces de interés:
+- [¿Qué es Docker?](https://www.ibm.com/co-es/cloud/learn/docker)
+- [¿Qué es un contenedor? (Inglés)](https://www.docker.com/resources/what-container/)
+- [¿Qué es ROS?](http://wiki.ros.org/es/ROS/Introduccion)
 
 ## Base
-Este dispositivo es la central de cómputo de el proyecto y se encarga de realizar la planeación y ejecución de rutas del brazo robótico, correr los algoritmos de visión computacional y correr los algoritmos específicos de cada proyecto (empaquetamiento, etc). La imagen de este dispositivo es la más pesada ya que esta basada en la imagen completa de escritorio de ROS. Se espera adicionalmente que el equipo cuente con buenos recursos de cómputo.
+Este dispositivo es la central de cómputo de el proyecto y se encarga de realizar la planeación y ejecución de rutas del brazo robótico, correr los algoritmos de visión computacional y correr los algoritmos específicos de cada proyecto (empaquetamiento, etc). La imagen de este dispositivo es la más pesada **(~4GB)** ya que esta basada en la imagen completa de escritorio de ROS. Se espera adicionalmente que el equipo cuente con buenos recursos de cómputo.
+
+Algunos enlaces de interés sobre la imagen base, los drivers y librerias:
+- [Imagenes oficiales de ROS](https://hub.docker.com/r/osrf/ros)
+- [Driver de ROS para robots UR](https://github.com/UniversalRobots/Universal_Robots_ROS_Driver)
+- [Documentación de MoveIt! (Planeador de movimiento de ROS)](https://ros-planning.github.io/moveit_tutorials/)
 
 Nota: La imagen de la base esta configurada para el brazo robótico del laboratorio AIA. Cualquier otro brazo requeriría de extraer la configuración del brazo y reemplazarla con la existente en la imagen.
 
