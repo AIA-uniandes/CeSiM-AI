@@ -26,7 +26,7 @@ ENV WS=/home/cesim-ai
 WORKDIR $WS
 
 # Copia el archivo `ur3_robot_calibration.yaml` al directorio de trabajo
-COPY ./ur3_robot_calibration.yaml .
+COPY ../calibration/ur3_robot_calibration.yaml .
 
 # Configura el espacio de trabajo de catkin y clona los repositorios de Git necesarios
 RUN mkdir -p ./catkin_ws/src \
