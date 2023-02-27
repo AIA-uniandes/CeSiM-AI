@@ -6,15 +6,15 @@ Para construir una nueva imagen, primero clone el repositorio y acceda a la carp
 
 ```bash
 git clone https://github.com/AIA-uniandes/CeSiM-AI.git
-cd CeSiM-AI/dockerfiles/<IMAGEN_A_MODIFICAR>
+cd CeSiM-AI/
 ```
 Use su editor de texto preferido para modificar el Dockerfile:
 ```bash
-vi Dockerfile
+vi ./dockerfiles/<DISPOSITIVO>/Dockerfile
 ```
 Realice los cambios que necesite y guarde el archivo. Luego puede construir la imagen usando:
 ```bash
-sudo docker build -t <ETIQUETA> .
+sudo docker build -f ./dockerfiles/<DISPOSITIVO>/Dockerfile -t <ETIQUETA> .
 ```
 Después de construirse, puede listar las imágenes con:
 ```bash
