@@ -37,7 +37,7 @@ RUN mkdir -p ~/tmp \
     # Actualiza las dependencias de ROS
     && rosdep update \
     # Agrega el comando de fuente de ROS a el bashrc
-    && echo "source /opt/ros/noetic/setup.bash" >> $WS/.bashrc
+    && echo "source /opt/ros/melodic/setup.bash" >> $WS/.bashrc
 
 # Establece el usuario predeterminado en "cesim-ai"
 USER cesim-ai
