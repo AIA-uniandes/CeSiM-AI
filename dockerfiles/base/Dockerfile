@@ -4,6 +4,9 @@ FROM osrf/ros:noetic-desktop-full
 # Establece la shell por defecto que se utilizará en la imagen de Docker
 SHELL ["/bin/bash", "-c"]
 
+# Copia el entrypoint customizado en el directorio raiz
+COPY ./dockerfiles/base/entrypoint.sh /
+
 # Elimina el script de entrypoint existente para utilizar uno personalizado
 RUN rm /ros_entrypoint.sh \
     # Actualiza la lista de paquetes y actualiza los paquetes instalados
@@ -25,7 +28,7 @@ ENV WS=/home/cesim-ai
 # Establece el directorio de trabajo en `WS`
 WORKDIR $WS
 
-# Copia el archivo `ur3_robot_calibration.yaml` al directorio de trabajo
+# Copia el archivo `ur3_robot_calibration.yaml` y 'entrypoint.sh'  al directorio de trabajo
 COPY ./calibration/ur3_robot_calibration.yaml .
 
 # Configura el espacio de trabajo de catkin y clona los repositorios de Git necesarios
@@ -51,10 +54,13 @@ RUN mkdir -p ./catkin_ws/src \
     # Agrega el archivo setup.bash del espacio de trabajo catkin al archivo bashrc del usuario
     && echo "source ~/catkin_ws/devel/setup.bash" >> $WS/.bashrc
 
+# Establece el comando de punto de entrada que se ejecutará cuando se inicie el contenedor Docker
+ENTRYPOINT ["/entrypoint.sh"]
+
+# Establece el comando de entrada al contenedor
+CMD ["bash"]
+
 # Establece el usuario predeterminado en "cesim-ai"
 USER cesim-ai
-
-# Establece el comando de punto de entrada que se ejecutará cuando se inicie el contenedor Docker
-ENTRYPOINT ["bash"]
 
 
