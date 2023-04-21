@@ -10,7 +10,7 @@ COPY ./dockerfiles/base/entrypoint.sh /
 # Elimina el script de entrypoint existente para utilizar uno personalizado
 RUN rm /ros_entrypoint.sh \
     # Actualiza la lista de paquetes, actualiza los paquetes instalados y actualiza la distribución
-    && apt-get update && apt-get -y upgrade && sudo apt dist-upgrade \
+    && apt-get update && apt-get upgrade -y\
     # Instala las dependencias necesarias
     && apt-get -y install --no-install-recommends software-properties-common git libusb-1.0-0-dev wget zsh net-tools ros-noetic-rqt-joint-trajectory-controller vim ros-noetic-catkin python3-catkin-tools python3-osrf-pycommon python3-wstool\
     # Limpia la caché de paquetes para liberar espacio en disco
