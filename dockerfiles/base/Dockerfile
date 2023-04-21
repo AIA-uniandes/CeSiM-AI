@@ -52,15 +52,15 @@ RUN mkdir -p ./catkin_ws/src \
     # Construye el espacio de trabajo catkin
     && catkin_make \
     # Agrega el archivo setup.bash del espacio de trabajo catkin al archivo bashrc del usuario
-    && echo "source ~/catkin_ws/devel/setup.bash" >> $WS/.bashrc
+    && echo "source ~/catkin_ws/devel/setup.bash" >> $WS/.bashrc \
+    # Cambia los permisos de acceso del directorio catkin
+    && chown cesim-ai:sudo -R $WS/catkin_ws/
 
 # Establece el comando de punto de entrada que se ejecutará cuando se inicie el contenedor Docker
 ENTRYPOINT ["/entrypoint.sh"]
 
-# Establece el comando de entrada al contenedor
-CMD ["bash"]
-
 # Establece el usuario predeterminado en "cesim-ai"
 USER cesim-ai
 
-
+# Establece el comando de entrada al contenedor
+CMD ["bash"]
