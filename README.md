@@ -16,7 +16,7 @@ Algunos enlaces de interés:
 - [¿Qué es ROS?](http://wiki.ros.org/es/ROS/Introduccion)
 
 ## Base
-Este dispositivo es la central de cómputo de el proyecto y se encarga de realizar la planeación y ejecución de rutas del brazo robótico, correr los algoritmos de visión computacional y correr los algoritmos específicos de cada proyecto (empaquetamiento, etc). La imagen de este dispositivo es la más pesada **(~4GB)** ya que esta basada en la imagen completa de escritorio de ROS. Se espera adicionalmente que el equipo cuente con buenos recursos de cómputo.
+Este dispositivo es la central de cómputo de el proyecto y se encarga de correr los entornos de simulación y visualización, realizar la planeación y ejecución de rutas del brazo robótico y correr los algoritmos específicos de cada proyecto (empaquetamiento, etc). La imagen de este dispositivo es la más pesada **(~4GB)** ya que esta basada en la imagen completa de escritorio de ROS. Se espera adicionalmente que el equipo cuente con buenos recursos de cómputo.
 
 Algunos enlaces de interés sobre la imagen base, los drivers y librerias:
 - [Imagenes oficiales de ROS](https://hub.docker.com/r/osrf/ros)
@@ -54,7 +54,7 @@ Nota: La imagen de la base esta configurada para el brazo robótico del laborato
 
 #### Windows
 
-1. Instala [VcXsrv](https://sourceforge.net/projects/vcxsrv/). Una vez instalado ejecuta el aplicativo **XLaunch** y cambiar el ajuste "Disable access control" en la ventana de "Extra settings":
+1. Instalar [VcXsrv](https://sourceforge.net/projects/vcxsrv/). Una vez instalado ejecutar el aplicativo **XLaunch** y seleccionar el ajuste "Disable access control" en la ventana de "Extra settings":
 
     ![](/doc/imgs/xlaunch.png)
 
@@ -67,6 +67,35 @@ Nota: La imagen de la base esta configurada para el brazo robótico del laborato
 3. Correr el contenedor. Modo interactivo (-it), con el mismo stack de red de el host (--network=host), privilegios extendidos (--privileged) y variable de entorno (-e DISPLAY) asignada a la IP del host. Esta instrucción borra el contenedor después de la salida, para mantener el contenedor y los archivos modificados/creados se debe quitar el flag de remover (--rm).
     ```bash
     docker run -it --rm --network=host --privileged -e DISPLAY=<IP_HOST>:0.0 aiaindustrial/cesim-ai:base                      
+    ```
+4. Para abrir otra sesión de bash del contenedor, se abre una nueva terminal y se imprimen los nomrbres e identificadores de los contenedores generados recientemente:
+    ```bash
+    docker ps -l
+    ```
+    Con el ID del contenedor que se corre en el paso anterior, se abre una nueva sesión interactiva de bash con:
+    ```bash
+    docker exec -it <ID_DEL_CONTENEDOR> bash
+    ```
+5. Para detener el contenedor se debe ejecutar el comando "exit" en el terminal donde se ejecutó el comando "run"
+
+#### Mac
+
+1. Instalar [XQuartz](https://www.xquartz.org/). Una vez instalado ejecutar el aplicativo **XQuartz** y seleccionar el ajuste "Allow connections from network client" en la ventana de "Security" en las preferencias del aplicativo:
+
+    ![](/doc/imgs/xquartz.png)
+
+    El resto de ajustes deben permanecer en el ajuste predeterminado.
+2. En una terminal, permitir la conexión con un display de docker (debe realizarse cada vez que reinicia el dispositivo):
+    ```bash
+    xhost +localhost
+    ```
+3. Hacer pull de la imagen del repositorio del AIA:
+    ```bash
+    docker pull aiaindustrial/cesim-ai:base
+    ```
+3. Correr el contenedor. Modo interactivo (-it), con el mismo stack de red de el host (--network=host), privilegios extendidos (--privileged) y variable de entorno (-e DISPLAY) asignada a la IP del host. Esta instrucción borra el contenedor después de la salida, para mantener el contenedor y los archivos modificados/creados se debe quitar el flag de remover (--rm).
+    ```bash
+    docker run -it --rm --network=host --privileged -e DISPLAY=host.docker.internal:0 aiaindustrial/cesim-ai:base                      
     ```
 4. Para abrir otra sesión de bash del contenedor, se abre una nueva terminal y se imprimen los nomrbres e identificadores de los contenedores generados recientemente:
     ```bash
