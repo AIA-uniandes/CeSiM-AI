@@ -31,7 +31,7 @@ robot = moveit_commander.RobotCommander()
 
 scene = moveit_commander.PlanningSceneInterface()
 
-group_name = "ur3"
+group_name = "manipulator"
 move_group = moveit_commander.MoveGroupCommander(group_name)
 
 display_trajectory_publisher = rospy.Publisher(
@@ -60,4 +60,18 @@ print("============ Printing robot state")
 print(robot.get_current_state())
 print("")
 
+# We get the joint values from the group and change some of the values:
+joint_goal = move_group.get_current_joint_values()
+joint_goal[0] = 0
+joint_goal[1] = -tau / 8
+joint_goal[2] = 0
+joint_goal[3] = -tau / 4
+joint_goal[4] = 0
+joint_goal[5] = tau / 6  # 1/6 of a turn
 
+# The go command can be called with joint values, poses, or without any
+# parameters if you have already set the pose or joint target for the group
+move_group.go(joint_goal, wait=True)
+
+# Calling ``stop()`` ensures that there is no residual movement
+move_group.stop()
