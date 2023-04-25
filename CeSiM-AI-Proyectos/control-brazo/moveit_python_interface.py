@@ -75,3 +75,25 @@ move_group.go(joint_goal, wait=True)
 
 # Calling ``stop()`` ensures that there is no residual movement
 move_group.stop()
+
+while True:
+    dr = input("Dame dir")
+    vertical = 0
+    horizontal = 0
+    if dr == 'W':
+        vertical=0.01
+    elif dr == 'S':
+        vertical=-0.01
+    elif dr == 'A':
+        horizontal=-0.01
+    elif dr == 'D':
+        horizontal=0.01
+
+    pose_goal = move_group.get_current_pose().pose
+    #pose_goal = geometry_msgs.msg.Pose()
+    #pose_goal.orientation.w = 1.0
+    pose_goal.position.x += vertical
+    pose_goal.position.y += horizontal
+    pose_goal.position.z += 0
+
+    move_group.set_pose_target(pose_goal)
