@@ -4,6 +4,9 @@ FROM navikey/raspbian-buster:latest
 # Establece la shell por defecto que se utilizará en la imagen de Docker
 SHELL ["/bin/bash", "-c"]
 
+# Copia el entrypoint customizado en el directorio raiz
+COPY ./dockerfiles/bandas/entrypoint.sh /
+
 # Actualiza la lista de paquetes
 RUN apt-get update \
     # Instala las dependencias necesarias
@@ -43,6 +46,12 @@ RUN mkdir -p ~/tmp \
 USER cesim-ai
 
 # Establece el comando de punto de entrada que se ejecutará cuando se inicie el contenedor Docker
-ENTRYPOINT ["bash"]
+ENTRYPOINT ["/entrypoint.sh"]
+
+# Establece el usuario predeterminado en "cesim-ai"
+USER cesim-ai
+
+# Establece el comando de entrada al contenedor
+CMD ["bash"]
 
 
