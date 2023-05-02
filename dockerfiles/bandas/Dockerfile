@@ -10,7 +10,7 @@ COPY ./dockerfiles/bandas/entrypoint.sh /
 # Actualiza la lista de paquetes
 RUN apt-get update \
     # Instala las dependencias necesarias
-    && sudo apt install -y build-essential vim gdebi unzip \
+    && sudo apt install -y build-essential rpi.gpio vim gdebi unzip \
     # Limpia la caché de paquetes para liberar espacio en disco
     && apt-get clean \
     # Elimina los paquetes no utilizados para liberar espacio en disco
