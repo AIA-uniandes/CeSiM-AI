@@ -10,7 +10,7 @@ COPY ./dockerfiles/vision/entrypoint.sh /
 # Actualiza la lista de paquetes
 RUN apt-get update \
     # Instala las dependencias requeridas
-    && apt-get install -y git ros-noetic-usb-cam uvcdynctrl ros-noetic-aruco-ros \
+    && apt-get install -y git ros-noetic-usb-cam uvcdynctrl ros-noetic-aruco-ros ros-noetic-rqt ros-noetic-rqt-common-plugins\
     # Limpia la caché de paquetes para liberar espacio en disco
     && apt-get clean \
     # Elimina los paquetes no utilizados para liberar espacio en disco
