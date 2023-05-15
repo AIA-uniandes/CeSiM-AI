@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: ur_description
+    relative_path: urdf/ur3_VG10.xacro
+    xacro_args: ""
+  SRDF:
+    relative_path: config/ur3_VG10.srdf
+  CONFIG:
+    author_name: Juan Pablo Reyes
+    author_email: jp.reyesf@uniandes.edu.co
+    generated_timestamp: 1683925505

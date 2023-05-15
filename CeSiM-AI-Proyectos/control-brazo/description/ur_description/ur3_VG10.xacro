@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="ur3_VG10">
+
+  <!-- ur -->
+  <xacro:include filename="$(find ur_description)/urdf/inc/ur3_macro.xacro" />
+  <xacro:ur3_robot prefix="" />
+  <!-- end-effector -->
+  <xacro:include filename="VG10.xacro" />
+
+  <!-- ur -->
+  <!-- The ur xacro must be included with passing parameters -->
+
+  <!-- end-effector -->
+  <!-- Here we include the end-effector by setting the parameters -->
+  <!-- TODO: check end-effector link name of robot -->
+  <xacro:VG10 prefix="" connected_to="tool0"/>
+
+  <!-- define the ur's position and orientation in the world coordinate system -->
+  <link name="world" />
+  <joint name="world_joint" type="fixed">
+    <parent link="world" />
+    <child link="base_link" /> <!-- TODO: check base_link name of robot -->
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+  </joint>
+</robot>
+

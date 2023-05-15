@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <!-- Here we define the 2 parameters of the macro -->
+  <xacro:macro name="VG10" params="prefix connected_to">
+    <!-- Create a fixed joint with a parameterized name. -->
+    <joint name="${prefix}VG10_joint" type="fixed">
+      <!-- The parent link must be read from the robot model it is attached to. -->
+      <parent link="${connected_to}"/>
+      <child link="${prefix}VG10"/>
+      <!-- The tool is directly attached to the flange. -->
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </joint>
+    
+    <material name="grey">
+	    <color rgba="0.6 0.6 0.6 1"/>
+    </material>
+
+    <link name="${prefix}VG10">
+      <visual>
+        <geometry>
+          <!-- The path to the visual meshes in the package. -->
+		<mesh filename="package://ur_description/meshes/VG10/visual/Ventosa.stl"/>
+	</geometry>
+	<material name="grey"/>
+      </visual>
+      <collision>
+        <geometry>
+          <!-- The path to the collision meshes in the package. -->
+		<mesh filename="package://ur_description/meshes/VG10/collision/Ventosa_simple.stl"/>
+	</geometry>
+	<material name="grey"/>
+      </collision>
+    </link>
+
+    <!-- TCP frame -->
+    <joint name="${prefix}tcp_joint" type="fixed">
+      <origin xyz="0 0 0.127" rpy="0 0 0"/>
+      <parent link="${prefix}VG10"/>
+      <child link="${prefix}tcp"/>
+    </joint>
+    <link name="${prefix}tcp"/>
+
+  </xacro:macro>
+</robot>
